@@ -679,7 +679,7 @@ public class DataAccess  {
 	}
 	
 
-public void open(boolean initializeMode){
+	public void open(boolean initializeMode){
 		
 		System.out.println("Opening DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" getDatabBaseOpenMode: "+c.getDataBaseOpenMode());
 
