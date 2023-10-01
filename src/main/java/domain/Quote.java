@@ -108,7 +108,7 @@ public class Quote implements Serializable{
 	
 	@Override
 	public boolean equals(Object o) {
-		if(o != null) {
+		if(o != null && getClass() == o.getClass()) {
 			Quote q = (Quote)o;
 			return this.getQuoteNumber()==q.getQuoteNumber();
 		} else {
@@ -116,5 +116,11 @@ public class Quote implements Serializable{
 		}
 	}
 	
-	
+	@Override
+	public int hashCode() {
+	    final int prime = 31;
+	    int result = 1;
+	    result = prime * result + ((quoteNumber == null) ? 0 : quoteNumber.hashCode());
+	    return result;
+	}
 }

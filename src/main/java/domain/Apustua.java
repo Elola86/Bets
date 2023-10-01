@@ -88,9 +88,17 @@ public class Apustua implements Serializable{
 	@Override
 	public boolean equals(Object o) {
 		Apustua a = (Apustua) o; 
-		if(a==null) {
+		if(a==null || getClass() != o.getClass()) {
 			return false;
 		}
 		return this.getApostuaNumber().equals(a.getApostuaNumber()); 
+	}
+	
+	@Override
+	public int hashCode() {
+	    final int prime = 31;
+	    int result = 1;
+	    result = prime * result + ((apustuaNumber == null) ? 0 : apustuaNumber.hashCode());
+	    return result;
 	}
 }

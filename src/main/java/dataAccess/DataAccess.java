@@ -220,13 +220,15 @@ public class DataAccess  {
 			Registered reg2 = new Registered("andrea", "123", 1111);
 			Registered reg3 = new Registered("markel", "123", 1111);
 			Registered reg4 = new Registered("mikel", "123", 1111);
+			
+			String question1 = "¿Quién ganará el partido?";
 									
 			if (Locale.getDefault().equals(new Locale("es"))) {
-				q1=ev1.addQuestion("¿Quién ganará el partido?",1);
+				q1=ev1.addQuestion(question1,1);
 				q2=ev1.addQuestion("¿Quién meterá el primer gol?",2);
-				q3=ev11.addQuestion("¿Quién ganará el partido?",1);
+				q3=ev11.addQuestion(question1,1);
 				q4=ev11.addQuestion("¿Cuántos goles se marcarán?",2);
-				q5=ev17.addQuestion("¿Quién ganará el partido?",1);
+				q5=ev17.addQuestion(question1,1);
 				q6=ev17.addQuestion("¿Habrá goles en la primera parte?",2);
 				
 			}
@@ -638,9 +640,9 @@ public class DataAccess  {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-	public Vector<Event> getEvents(Date date) {
+	public ArrayList<Event> getEvents(Date date) {
 		System.out.println(">> DataAccess: getEvents");
-		Vector<Event> res = new Vector<Event>();	
+		ArrayList<Event> res = new ArrayList<Event>();	
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate=?1",Event.class);   
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
@@ -862,7 +864,7 @@ public void open(boolean initializeMode){
 				Jarraitzailea erab=db.find(Jarraitzailea.class, reg.getJarraitzaileaNumber());
 				b=true;
 				for(ApustuAnitza apu: erab.getNork().getApustuAnitzak()) {
-					if(apu.getApustuKopia()==apustuAnitza.getApustuKopia()) {
+					if(apu.getApustuKopia().equals(apustuAnitza.getApustuKopia())) {
 						b=false;
 					}
 				}

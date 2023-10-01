@@ -1,5 +1,7 @@
 package businessLogic;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +13,6 @@ import javax.jws.WebService;
 import domain.ApustuAnitza;
 import domain.Apustua;
 import domain.Event;
-//import domain.Booking;
 import domain.Question;
 import domain.Quote;
 import domain.Registered;
@@ -27,7 +28,7 @@ import exceptions.QuoteAlreadyExist;
  * Interface that specifies the business logic.
  */
 @WebService
-public interface BLFacade  {
+public interface BLFacade extends Serializable {
 	  
 
 	/**
@@ -49,7 +50,7 @@ public interface BLFacade  {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-	@WebMethod public Vector<Event> getEvents(Date date);
+	@WebMethod public ArrayList<Event> getEvents(Date date);
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
