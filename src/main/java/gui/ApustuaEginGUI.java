@@ -34,10 +34,7 @@ import configuration.UtilDate;
 import domain.Event;
 import domain.Question;
 import domain.Quote;
-import domain.Transaction;
 import domain.Registered;
-import exceptions.ApustuaAlreadyExist;
-import exceptions.EventFinished;
 import java.awt.Font;
 
 public class ApustuaEginGUI extends JFrame{
