@@ -940,7 +940,7 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
-	public void EmaitzakIpini(Quote quote) throws EventNotFinished{
+	public void emaitzakIpini(Quote quote) throws EventNotFinished{
 		
 		Quote q = db.find(Quote.class, quote); 
 		String result = q.getForecast();
@@ -955,7 +955,7 @@ public class DataAccess  {
 		question.setResult(result);
 		for(Quote quo: question.getQuotes()) {
 			for(Apustua apu: quo.getApustuak()) {
-				
+					
 				Boolean b=apu.galdutaMarkatu(quo);
 				if(b) {
 					apu.getApustuAnitza().setEgoera("galduta");
