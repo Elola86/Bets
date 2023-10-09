@@ -183,8 +183,8 @@ public class EmaitzakIpiniDABTest {
 	 @Test
 	 public void Test6()
 	 {
+		 
 		 try {
-				
 				//define paramaters
 				String eventText="event1";
 				String queryText="Almeria";
