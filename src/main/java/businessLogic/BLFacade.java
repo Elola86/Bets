@@ -97,7 +97,7 @@ public interface BLFacade extends Serializable {
 	
 	@WebMethod public List<Transaction> findTransakzioak(Registered u); 
 	
-	@WebMethod public void EmaitzakIpini(Quote quote) throws EventNotFinished;
+	@WebMethod public void emaitzakIpini(Quote quote) throws EventNotFinished;
 	
 	@WebMethod  public boolean gertaeraEzabatu(Event ev);
 	

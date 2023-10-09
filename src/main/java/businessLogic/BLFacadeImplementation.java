@@ -239,9 +239,9 @@ public class BLFacadeImplementation  implements BLFacade {
     	return l; 
     }
     @WebMethod	
-    public void EmaitzakIpini(Quote quote) throws EventNotFinished {
+    public void emaitzakIpini(Quote quote) throws EventNotFinished {
     	dbManager.open(false);
-    	dbManager.EmaitzakIpini(quote);
+    	dbManager.emaitzakIpini(quote);
     	dbManager.close();
     }
     @WebMethod	
