@@ -43,7 +43,7 @@ public class EmaitzakIpiniDABTest {
 				quo = testDA.addEventWithQuestionQuoteApusBi(eventText, oneDate,queryText, betMinimum);
 				testDA.close();
 				
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				assertTrue(true);
 		 }
 		 catch(Exception e) {
@@ -83,7 +83,7 @@ public class EmaitzakIpiniDABTest {
 				quo = testDA.ganarMasDeUna(eventText, oneDate,queryText, betMinimum);
 				testDA.close();
 				
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				assertTrue(true);
 		 }
 		 catch(Exception e) {
@@ -120,7 +120,7 @@ public class EmaitzakIpiniDABTest {
 				quo = testDA.ganarApustuAnitzak(eventText, oneDate,queryText, betMinimum);
 				testDA.close();
 				
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				assertTrue(true);
 		 }
 		 catch(Exception e) {
@@ -162,7 +162,7 @@ public class EmaitzakIpiniDABTest {
 				
 				
 				//invoke System Under Test (sut)  
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				
 				
 				//if the program continues fail
@@ -207,7 +207,7 @@ public class EmaitzakIpiniDABTest {
 				
 				
 				//invoke System Under Test (sut)  
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				
 				
 				//if the program continues fail
@@ -234,7 +234,7 @@ public class EmaitzakIpiniDABTest {
 				quo = new Quote();
 	
 				//invoke System Under Test (sut)  
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				
 				
 				//if the program continues fail
@@ -251,7 +251,7 @@ public class EmaitzakIpiniDABTest {
 		 try {
 				
 				//invoke System Under Test (sut)  
-				sut.EmaitzakIpini(null);
+				sut.emaitzakIpini(null);
 				
 				
 				//if the program continues fail
@@ -272,7 +272,7 @@ public class EmaitzakIpiniDABTest {
 			
 			try {
 				
-				sut.EmaitzakIpini(quo);
+				sut.emaitzakIpini(quo);
 				fail();
 			}
 			catch(Exception e)
