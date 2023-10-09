@@ -157,7 +157,7 @@ public class EmaitzakIpiniGUI extends JFrame{
 				Question que= (Question) jComboBoxQuestions.getSelectedItem();
 				Quote q = (Quote)jComboBoxQuotes.getSelectedItem(); 
 				try {
-					businessLogic.EmaitzakIpini(q);
+					businessLogic.emaitzakIpini(q);
 					jComboBoxQuestions.removeAllItems();
 					for(domain.Question question : businessLogic.findQuestion(event)) {
 						if(question.getResult()==null)
