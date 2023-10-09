@@ -12,6 +12,7 @@ import domain.Quote;
 import exceptions.EventNotFinished;
 import test.dataAccess.TestDataAccess;
 
+//test oier
 public class EmaitzakIpiniDABTest {
 	static DataAccess sut=new DataAccess();
 	 
@@ -58,11 +59,7 @@ public class EmaitzakIpiniDABTest {
 	 
 	 }
 	 
-	 @Test
-	 public void Test2()
-	 {
-		
-	 }
+	
 	 
 	 @Test
 	 public void Test3()
