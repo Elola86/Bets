@@ -789,7 +789,7 @@ public class DataAccess  {
 	}
 	
 	public Team findTeam(Registered u){
-		Registered user = (Registered) db.find(Registered.class, u.getUsername());
+		Registered user = db.find(Registered.class, u.getUsername());
 		return user.getTaldea(); 
 	}
 	
@@ -816,7 +816,7 @@ public class DataAccess  {
 	}
 	
 	public void DiruaSartu(Registered u, Double dirua, Date data, String mota) {
-		Registered user = (Registered) db.find(Registered.class, u.getUsername()); 
+		Registered user = db.find(Registered.class, u.getUsername()); 
 		db.getTransaction().begin();
 		Transaction t = new Transaction(user, dirua, data, mota); 
 		System.out.println(t.getMota());
@@ -827,7 +827,7 @@ public class DataAccess  {
 	}
 	
 	public boolean ApustuaEgin(Registered u, Vector<Quote> quote, Double balioa, Integer apustuBikoitzaGalarazi) {
-		Registered user = (Registered) db.find(Registered.class, u.getUsername());
+		Registered user =  db.find(Registered.class, u.getUsername());
 		Boolean b;
 		if(user.getDirukop()>=balioa) {
 			db.getTransaction().begin();
