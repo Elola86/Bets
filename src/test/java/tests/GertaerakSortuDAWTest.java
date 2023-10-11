@@ -53,6 +53,7 @@ public class GertaerakSortuDAWTest {
 		}     
 	}
 
+	//El deporte recibido no está en la BD
 	@Test
 	public void test1() {
 		try {
@@ -68,6 +69,7 @@ public class GertaerakSortuDAWTest {
    		   } 
 	}
 	
+	//No hay eventos en la BD
 	@Test
 	public void test2() {
 		try {
@@ -92,6 +94,7 @@ public class GertaerakSortuDAWTest {
 
 	}
 	
+	//El evento que se quiere añadir ya está en la base de datos
 	@Test
 	public void test3() {
 		try { 
@@ -124,6 +127,7 @@ public class GertaerakSortuDAWTest {
 		   
 	}
 
+	//El evento no está en la BD y hay 2 eventos en la BD
 	@Test
 	public void test4() {
 		try {
@@ -156,6 +160,7 @@ public class GertaerakSortuDAWTest {
 		   }
 	}
 	
+	//El evento no está en la BD y hay más de 2 eventos en la BD
 	@Test
 	public void test5() {
 		try {
