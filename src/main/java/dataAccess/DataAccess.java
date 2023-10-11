@@ -751,6 +751,7 @@ public class DataAccess  {
 				db.persist(e);
 			}
 		}else {
+			db.getTransaction().commit();
 			return false;
 		}
 		db.getTransaction().commit();
