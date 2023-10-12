@@ -89,7 +89,11 @@ public class GertaerakSortuDAWTest {
    		   } catch (Exception e) {
    		   		fail();
    		   } finally {
-   			   sut.gertaeraEzabatu(ev);
+   			
+   			testDA.open();
+	        boolean b=testDA.removeEvent(ev);
+	        testDA.close();
+	        System.out.println("Finally "+b); 
    		   }
 
 	}
@@ -118,7 +122,6 @@ public class GertaerakSortuDAWTest {
    		   		fail();
    		   } finally {
 				  //Remove the created objects in the database (cascade removing) 
-   			   	sut.gertaeraEzabatu(ev);
 				testDA.open();
 		        boolean b=testDA.removeEvent(ev);
 		        testDA.close();
@@ -152,8 +155,8 @@ public class GertaerakSortuDAWTest {
    		   		fail();
    		   } finally {
 				  //Remove the created objects in the database (cascade removing) 
-   			   sut.gertaeraEzabatu(ev);
 				testDA.open();
+				testDA.removeEvent(ev);
 		        testDA.removeEvent(ev2);
 		        testDA.removeEvent(ev3);
 		        testDA.close();          
@@ -184,16 +187,12 @@ public class GertaerakSortuDAWTest {
    		   		fail();
    		   } finally {
 				  //Remove the created objects in the database (cascade removing)   
-   			   sut.gertaeraEzabatu(ev);
    			   testDA.open();
+   			   testDA.removeEvent(ev);
 		       testDA.removeEvent(ev2);
 		       testDA.removeEvent(ev3);
 		       testDA.removeEvent(ev4);
-		        testDA.close();         
+		       testDA.close();         
 		   }
 	}
 }
-
-	
-
-

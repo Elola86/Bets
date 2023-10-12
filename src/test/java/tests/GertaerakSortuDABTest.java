@@ -55,25 +55,11 @@ public class GertaerakSortuDABTest {
 			testDA.close();	
 			
    	     	boolean obtained = sut.gertaerakSortu(description, eventDate, sport);
-   	     	//Para conseguir el evento que queremos añadir y así poder eliminarlo de la BD al final
-   	     	List<Event> events = sut.getEvents(eventDate);
-	        for (Event event:events){
-	        	if(event.getDescription().equals(description)) {
-	        		ev=event;
-	        	}
-	        }	
 	     	assertEquals(expected,obtained); 
 	        
    		   } catch (Exception e) {
    		   		fail();
-   		   } finally {
-				  //Remove the created objects in the database (cascade removing) 
-   			   	sut.gertaeraEzabatu(ev);
-				testDA.open();
-		        boolean b=testDA.removeEvent(ev);
-		        testDA.close();
-		        System.out.println("Finally "+b);          
-		   }
+   		   } 
 	}
 	
 	//El deporte recibido no está en la BD
@@ -92,7 +78,7 @@ public class GertaerakSortuDABTest {
 	   		} 
 	}
 	
-	//LEl evento descrito no está en la BD
+	//El evento descrito no está en la BD
 	@Test
 	public void test3() {
 		try {
@@ -111,7 +97,10 @@ public class GertaerakSortuDABTest {
    		   } catch (Exception e) {
    		   		fail();
    		   } finally {
-   			   sut.gertaeraEzabatu(ev);
+   			   testDA.open();
+   			   boolean b=testDA.removeEvent(ev);
+   			   testDA.close();
+   			   System.out.println("Finally "+b); 
    		   }
 	}
 	
@@ -122,13 +111,7 @@ public class GertaerakSortuDABTest {
    	        description="RealMadridBarcelona";
    	        
    	        sut.gertaerakSortu(description, eventDate, sport);
-   	        //Para conseguir el evento que queremos añadir y así poder eliminarlo de la BD al final
-   	        List<Event> events = sut.getEvents(eventDate);
-   	        for (Event event:events){
-   	        	if(event.getDescription().equals(description)) {
-   	        		ev=event;
-   	        	}
-   	        }	        
+        
 	     	fail();
    	     	
    		   } catch (Exception e) {
@@ -142,13 +125,7 @@ public class GertaerakSortuDABTest {
 		try { 
 			description=null;
    	     	sut.gertaerakSortu(description, eventDate, sport);
-   	     	//Para conseguir el evento que queremos añadir y así poder eliminarlo de la BD al final
-   	     	List<Event> events = sut.getEvents(eventDate);
-	        for (Event event:events){
-	        	if(event.getDescription().equals(description)) {
-	        		ev=event;
-	        	}
-	        }	 
+   	     	
 	        fail();
 	        
    		   } catch (Exception e) { 			   
@@ -162,13 +139,7 @@ public class GertaerakSortuDABTest {
 		try { 
 			eventDate=null;
    	     	sut.gertaerakSortu(description, eventDate, sport);
-   	     	//Para conseguir el evento que queremos añadir y así poder eliminarlo de la BD al final
-   	     	List<Event> events = sut.getEvents(eventDate);
-	        for (Event event:events){
-	        	if(event.getDescription().equals(description)) {
-	        		ev=event;
-	        	}
-	        }	 
+   	     	
 	        fail();
 	        
    		   } catch (Exception e) { 			   
@@ -182,21 +153,12 @@ public class GertaerakSortuDABTest {
 		try { 
 			sport=null;
    	     	sut.gertaerakSortu(description, eventDate, sport);
-   	     	//Para conseguir el evento que queremos añadir y así poder eliminarlo de la BD al final
-   	     	List<Event> events = sut.getEvents(eventDate);
-	        for (Event event:events){
-	        	if(event.getDescription().equals(description)) {
-	        		ev=event;
-	        	}
-	        }	 
-	        fail();
+
+   	     	fail();
 	        
    		   } catch (Exception e) { 			   
    		   		assertTrue(true);
    		   } 
-	}
-	
-	
-	
+	}	
 	
 }
