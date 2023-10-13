@@ -69,13 +69,43 @@ public class Sport implements Serializable{
 	public String toString() {
 		return this.izena;
 	}
-	
+
 	@Override
-	public boolean equals(Object o) {
-		Sport sp = (Sport) o;
-		if(sp==null) {
-			return false;
-		}
-		return this.izena.equals(sp.getIzena());
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apustuKantitatea == null) ? 0 : apustuKantitatea.hashCode());
+		result = prime * result + ((events == null) ? 0 : events.hashCode());
+		result = prime * result + ((izena == null) ? 0 : izena.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sport other = (Sport) obj;
+		if (apustuKantitatea == null) {
+			if (other.apustuKantitatea != null)
+				return false;
+		} else if (!apustuKantitatea.equals(other.apustuKantitatea))
+			return false;
+		if (events == null) {
+			if (other.events != null)
+				return false;
+		} else if (!events.equals(other.events))
+			return false;
+		if (izena == null) {
+			if (other.izena != null)
+				return false;
+		} else if (!izena.equals(other.izena))
+			return false;
+		return true;
+	}
+	
+	
 }

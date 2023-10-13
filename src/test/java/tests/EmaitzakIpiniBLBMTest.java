@@ -31,6 +31,9 @@ public class EmaitzakIpiniBLBMTest {
 	DataAccess dataAccess=Mockito.mock(DataAccess.class);
 	@InjectMocks
 	BLFacade sut=new BLFacadeImplementation(dataAccess);
+	Quote mockedQuote= Mockito.mock(Quote.class);
+	Question mockedQuestion = Mockito.mock(Question.class);
+	Event mockedEvent = Mockito.mock(Event.class);
 	
 	String eventText;
 	String queryText;
@@ -52,12 +55,13 @@ public class EmaitzakIpiniBLBMTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	 @Test
 	 public void Test1() throws EventNotFinished
 	 {
-		 
+		 try {
 		 Event  ev=new Event(eventText,this.oneDate,null, null);
 		 Question pregunta= ev.addQuestion(this.queryText, this.betMinimum);
 		 Quote finale = pregunta.addQuote((double) 2, this.queryText, pregunta);
@@ -68,15 +72,13 @@ public class EmaitzakIpiniBLBMTest {
 		 finales.setApustuAnitza(ultimo);   
 		 otraQuote.addApustua(finales);
 		 
-		 Mockito.doNothing().when(dataAccess).emaitzakIpini(Mockito.eq(finale));
+		Mockito.doNothing().when(dataAccess).emaitzakIpini(Mockito.eq(finale));
 		 
 		 
-		 try {
 			sut.emaitzakIpini(finale);
 			assertTrue(true);
 		} catch (EventNotFinished e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			fail();
 		}
 		 
 	 }
@@ -157,7 +159,7 @@ public class EmaitzakIpiniBLBMTest {
 	 @Test
 	 public void Test5()
 	 {
-		try {
+		
 			 try {
 					oneDate = sdf.parse("05/10/2024");
 			} catch (ParseException e) {
@@ -171,14 +173,17 @@ public class EmaitzakIpiniBLBMTest {
 			Question pregunta= ev.addQuestion(queryText, betMinimum);
 			Quote finale = pregunta.addQuote(null, queryText, pregunta);
 			
-			 
 			
-				Mockito.doThrow(new EventNotFinished()).when(dataAccess).emaitzakIpini(finale);
+			try { 
+			
+			Mockito.doThrow(new EventNotFinished()).when(dataAccess).emaitzakIpini(finale);
 				
-				sut.emaitzakIpini(finale);
+				
+			sut.emaitzakIpini(finale);
 				fail();
 		}catch(EventNotFinished e)
 		{
+			
 			assertTrue(true);
 		}
 	 }
@@ -192,6 +197,7 @@ public class EmaitzakIpiniBLBMTest {
 				Quote quo = new Quote();
 	
 				Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(quo);
+				
 				//invoke System Under Test (sut)  
 				sut.emaitzakIpini(quo);
 				
@@ -210,9 +216,9 @@ public class EmaitzakIpiniBLBMTest {
 		 try {
 				
 			 	Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(null);
-			 	
+			 	Quote b = null;
 				//invoke System Under Test (sut)  
-				sut.emaitzakIpini(null);
+				sut.emaitzakIpini(b);
 				
 				
 				//if the program continues fail
@@ -230,7 +236,7 @@ public class EmaitzakIpiniBLBMTest {
 	 
 		 Quote finale = new Quote(null, queryText, null);
 		 
-		 Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(finale);
+		 Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(Mockito.eq(finale));
 		 
 		 sut.emaitzakIpini(finale);
 		 

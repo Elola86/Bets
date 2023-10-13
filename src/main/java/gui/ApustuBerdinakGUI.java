@@ -29,7 +29,7 @@ public class ApustuBerdinakGUI extends JFrame{
 	private JLabel lblError;
 	
 	
-	public ApustuBerdinakGUI(Registered copia, Registered me) {
+	public ApustuBerdinakGUI(Registered copia) {
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(400, 300));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("ApustuBerdinak"));

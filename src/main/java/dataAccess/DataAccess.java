@@ -903,7 +903,7 @@ public class DataAccess  {
 	}
 	
 	public List<Apustua> findApustua(Registered u){
-		Registered user = (Registered) db.find(Registered.class, u.getUsername()); 
+		Registered user = db.find(Registered.class, u.getUsername()); 
 		TypedQuery<Apustua> Aquery = db.createQuery("SELECT a FROM Apustua a WHERE a.getUser().getUsername() =?1 ", Apustua.class);
 		Aquery.setParameter(1, u.getUsername());
 		return Aquery.getResultList();
@@ -941,14 +941,15 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	
+	
 	public void emaitzakIpini(Quote quote) throws EventNotFinished{
-		
 		Quote q = db.find(Quote.class, quote); 
 		String result = q.getForecast();
-		
+		System.out.println("aqui tambien llega");
 		if(new Date().compareTo(q.getQuestion().getEvent().getEventDate())<0)
 			throw new EventNotFinished();
-
+		System.out.println("aqui llega");
 		Vector<Apustua> listApustuak = q.getApustuak();
 		db.getTransaction().begin();
 		Question que = q.getQuestion(); 
