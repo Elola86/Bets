@@ -177,8 +177,12 @@ public class EmaitzakIpiniBLBMTest {
 			try { 
 			
 			Mockito.doThrow(new EventNotFinished()).when(dataAccess).emaitzakIpini(finale);
+			}catch(EventNotFinished e)
+			{
 				
-				
+				assertTrue(true);
+			}
+			try {	
 			sut.emaitzakIpini(finale);
 				fail();
 		}catch(EventNotFinished e)
@@ -191,13 +195,17 @@ public class EmaitzakIpiniBLBMTest {
 	 @Test
 	 public void Test6()
 	 {
+		 Quote quo = new Quote();
+		 
 		 try {
-			 
 				//define paramaters
-				Quote quo = new Quote();
-	
 				Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(quo);
-				
+		 }catch(Exception e)
+		 {
+			 assertTrue(true);
+		 }
+		 
+		 try {
 				//invoke System Under Test (sut)  
 				sut.emaitzakIpini(quo);
 				
@@ -216,6 +224,11 @@ public class EmaitzakIpiniBLBMTest {
 		 try {
 				
 			 	Mockito.doThrow(new Exception("quote es null")).when(dataAccess).emaitzakIpini(null);
+		 }catch(Exception e)
+		 {
+			 assertTrue(true);
+		 }
+		 try {
 			 	Quote b = null;
 				//invoke System Under Test (sut)  
 				sut.emaitzakIpini(b);
@@ -232,18 +245,28 @@ public class EmaitzakIpiniBLBMTest {
 	 @Test
 	 public void Test8()
 	 {
+		 
+		 Quote finale = new Quote(null, queryText, null);
 		 try {
 	 
-		 Quote finale = new Quote(null, queryText, null);
+		
 		 
 		 Mockito.doThrow(new Exception("no hay question")).when(dataAccess).emaitzakIpini(Mockito.eq(finale));
+		 }
+		 catch(Exception e)
+		 {
+			 assertTrue(true);
+		 }
 		 
+		 
+		 try {
 		 sut.emaitzakIpini(finale);
 		 
 		 fail();
 		 }
 		 catch(Exception e)
 		 {
+			 
 			 assertTrue(true);
 		 }
 	 }
