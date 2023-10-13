@@ -215,7 +215,7 @@ public class EmaitzakIpiniBLBMTest {
 	 {
 		 try {
 				
-			 	Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(null);
+			 	Mockito.doThrow(new Exception("quote es null")).when(dataAccess).emaitzakIpini(null);
 			 	Quote b = null;
 				//invoke System Under Test (sut)  
 				sut.emaitzakIpini(b);
@@ -236,7 +236,7 @@ public class EmaitzakIpiniBLBMTest {
 	 
 		 Quote finale = new Quote(null, queryText, null);
 		 
-		 Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(Mockito.eq(finale));
+		 Mockito.doThrow(new Exception("no hay question")).when(dataAccess).emaitzakIpini(Mockito.eq(finale));
 		 
 		 sut.emaitzakIpini(finale);
 		 
