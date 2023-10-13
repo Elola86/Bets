@@ -925,8 +925,8 @@ public class DataAccess  {
 	
 	public void ApustuaIrabazi(ApustuAnitza apustua) {
 		ApustuAnitza apustuAnitza = db.find(ApustuAnitza.class, apustua.getApustuAnitzaNumber());
-		Registered reg = (Registered) apustuAnitza.getUser();
-		Registered r = (Registered) db.find(Registered.class, reg.getUsername());
+		Registered reg = apustuAnitza.getUser();
+		Registered r =  db.find(Registered.class, reg.getUsername());
 		db.getTransaction().begin();
 		apustuAnitza.setEgoera("irabazita");
 		Double d=apustuAnitza.getBalioa();
