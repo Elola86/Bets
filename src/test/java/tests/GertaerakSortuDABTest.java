@@ -59,8 +59,14 @@ public class GertaerakSortuDABTest {
 	        
    		   } catch (Exception e) {
    		   		fail();
-   		   } 
+   		   } finally {
+   			   testDA.open();
+ 			   boolean b=testDA.removeEvent(ev);
+ 			   testDA.close();
+ 			   System.out.println("Finally "+b);
+   		   }
 	}
+
 	
 	//El deporte recibido no está en la BD
 	@Test
