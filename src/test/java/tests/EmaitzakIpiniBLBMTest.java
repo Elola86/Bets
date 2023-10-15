@@ -223,7 +223,7 @@ public class EmaitzakIpiniBLBMTest {
 			 assertTrue(true);
 		 }
 	 }
- 
+  
 	 @Test
 	 public void Test7()
 	 {
