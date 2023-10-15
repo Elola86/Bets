@@ -76,6 +76,9 @@ public class EmaitzakIpiniBLBMTest {
 		 
 		 
 			sut.emaitzakIpini(finale);
+			
+			Mockito.verify(dataAccess, Mockito.times(1)).emaitzakIpini(Mockito.any(Quote.class));
+			
 			assertTrue(true);
 		} catch (EventNotFinished e) {
 			fail();
@@ -101,6 +104,8 @@ public class EmaitzakIpiniBLBMTest {
 
 		    
 				sut.emaitzakIpini(finale);
+				Mockito.verify(dataAccess, Mockito.times(1)).emaitzakIpini(Mockito.any(Quote.class));
+				
 				assertTrue(true);
 			} catch (EventNotFinished e) {
 				// TODO Auto-generated catch block
@@ -128,6 +133,7 @@ public class EmaitzakIpiniBLBMTest {
 		    
 		    Mockito.doNothing().when(dataAccess).emaitzakIpini(Mockito.eq(finale));
 		    sut.emaitzakIpini(finale);
+		    Mockito.verify(dataAccess, Mockito.times(1)).emaitzakIpini(Mockito.any(Quote.class));
 		    assertTrue(true);
 		 }
 		 catch(Exception e)
@@ -180,7 +186,7 @@ public class EmaitzakIpiniBLBMTest {
 			}catch(EventNotFinished e)
 			{
 				
-				assertTrue(true);
+				//nada
 			}
 			try {	
 			sut.emaitzakIpini(finale);
@@ -202,7 +208,7 @@ public class EmaitzakIpiniBLBMTest {
 				Mockito.doThrow(new Exception()).when(dataAccess).emaitzakIpini(quo);
 		 }catch(Exception e)
 		 {
-			 assertTrue(true);
+			//nada
 		 }
 		 
 		 try {
@@ -226,7 +232,7 @@ public class EmaitzakIpiniBLBMTest {
 			 	Mockito.doThrow(new Exception("quote es null")).when(dataAccess).emaitzakIpini(null);
 		 }catch(Exception e)
 		 {
-			 assertTrue(true);
+			//nada
 		 }
 		 try {
 			 	Quote b = null;
@@ -255,7 +261,7 @@ public class EmaitzakIpiniBLBMTest {
 		 }
 		 catch(Exception e)
 		 {
-			 assertTrue(true);
+			 //nada
 		 }
 		 
 		 
