@@ -59,7 +59,7 @@ public class EmaitzakIpiniBLBMTest {
 	}
 	
 	 @Test
-	 public void Test1() throws EventNotFinished
+	 public void Test1()
 	 {
 		 try {
 		 Event  ev=new Event(eventText,this.oneDate,null, null);
