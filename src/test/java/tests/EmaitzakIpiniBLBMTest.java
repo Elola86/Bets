@@ -263,7 +263,7 @@ public class EmaitzakIpiniBLBMTest {
 		 {
 			 //nada
 		 }
-		 
+		
 		 
 		 try {
 		 sut.emaitzakIpini(finale);
