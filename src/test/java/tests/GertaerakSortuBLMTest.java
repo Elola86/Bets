@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -168,7 +169,7 @@ public class GertaerakSortuBLMTest {
 			 eventDate=null;
 			 Mockito.doThrow(new Exception("La fecha es null")).when(dataAccess).gertaerakSortu(description, eventDate, sport);
 			 
-			 boolean obtained=sut.gertaerakSortu(description, eventDate, sport);
+			 sut.gertaerakSortu(description, eventDate, sport);
 			 fail();
 		} catch(Exception e) {
 			assertTrue(true);
@@ -188,4 +189,79 @@ public class GertaerakSortuBLMTest {
 			assertTrue(true);
 		}
 	}
+	
+	//Tests de valores límite:
+	//Párametros correctos y eventDate es un día anterior a la fecha de hoy
+	@Test
+	public void test8() {
+		try {
+			eventDate=new Date();
+			Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(eventDate);
+	        // Restar un día
+	        calendar.add(Calendar.DAY_OF_MONTH, -1);
+	        eventDate=calendar.getTime();
+	        
+			//configure Mock
+	        Mockito.doThrow(new EventFinished("La fecha de este evento ya ha pasado")).when(dataAccess).gertaerakSortu(description, eventDate, sport);			
+			
+			sut.gertaerakSortu(description, eventDate, sport);
+			fail();
+			
+		}catch(Exception e) {
+			assertTrue(true);
+		}
+	}
+	
+	//Párametros correctos y eventDate es la fecha de hoy
+	@Test
+	public void test9() {
+		try {
+			eventDate=new Date();
+			//configure Mock
+			Mockito.doReturn(false).when(dataAccess).gertaerakSortu(Mockito.eq(description), Mockito.eq(eventDate),Mockito.eq(sport));			
+			
+			//invoke System Under Test (sut) 
+			boolean obtained=sut.gertaerakSortu(description, eventDate, sport);
+			
+			//verify the results				
+			Mockito.verify(dataAccess,Mockito.times(1)).gertaerakSortu(Mockito.eq(description), Mockito.eq(eventDate),Mockito.eq(sport));
+
+			assertFalse(obtained);
+			
+		}catch(Exception e) {
+			fail();
+		}
+	}
+		
+	//Párametros correctos y eventDate es un día después a la fecha de hoy
+	@Test
+	public void test10() {
+		try {
+			eventDate=new Date();
+			Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(eventDate);
+	        // Restar un día
+	        calendar.add(Calendar.DAY_OF_MONTH, +1);
+	        eventDate=calendar.getTime();
+	        
+	        Mockito.doReturn(false).when(dataAccess).gertaerakSortu(Mockito.eq(description), Mockito.eq(eventDate),Mockito.eq(sport));			
+			
+			//invoke System Under Test (sut) 
+			boolean obtained=sut.gertaerakSortu(description, eventDate, sport);
+			
+			//verify the results				
+			Mockito.verify(dataAccess,Mockito.times(1)).gertaerakSortu(Mockito.eq(description), Mockito.eq(eventDate),Mockito.eq(sport));
+
+			assertFalse(obtained);
+			
+		}catch(Exception e) {
+			fail();
+		}
+	}
 }
+
+
+
+
+
