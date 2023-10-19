@@ -64,7 +64,7 @@
 		<sonar.organization>is2elola</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.projectKey>is2elola_betstesting</sonar.projectKey>
-		<sonar.login>757dbee8496928f10ee4b99d74316a6c4e4d81ad</sonar.login>
+		<sonar.token>757dbee8496928f10ee4b99d74316a6c4e4d81ad</sonar.token>
 	</properties>
 
 	<!-- https://mvnrepository.com/artifact/junit/junit -->
