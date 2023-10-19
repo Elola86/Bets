@@ -640,7 +640,10 @@ public class DataAccessEmaitzakIpini {
 					
 				Boolean b=apu.galdutaMarkatu(quo);
 				if(b) {
-					apu.getApustuAnitza().setEgoera("galduta");
+					apu.getApustuAnitza().setEgoera("galduta");  
+					
+					
+					
 				}else {
 					apu.setEgoera("irabazita");
 				}

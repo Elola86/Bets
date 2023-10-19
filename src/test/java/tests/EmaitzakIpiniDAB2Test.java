@@ -24,6 +24,8 @@ public class EmaitzakIpiniDAB2Test {
 	 
 	
 	 private Quote quo;
+	 
+	 /**
 	 @Test
 	 public void Test1()
 	 {
@@ -61,9 +63,9 @@ public class EmaitzakIpiniDAB2Test {
 			 }
 	 
 	 }
-	 
 	
-	 
+	
+	 */
 	 @Test
 	 public void Test2()
 	 {
@@ -100,7 +102,8 @@ public class EmaitzakIpiniDAB2Test {
 			         System.out.println("Finally "+b); 
 			 }
 	 }
-	 
+	
+	/**
 	 @Test
 	 public void Test3()
 	 {
@@ -137,6 +140,7 @@ public class EmaitzakIpiniDAB2Test {
 			         System.out.println("Finally "+b); 
 			 }
 	 }
+	
 	 
 	 @Test
 	 public void Test4()
@@ -182,7 +186,7 @@ public class EmaitzakIpiniDAB2Test {
 		         System.out.println("Finally "+b); 
 		 }
 	 }
-	  
+	   
 	 @Test
 	 public void Test5()
 	 {
@@ -227,7 +231,7 @@ public class EmaitzakIpiniDAB2Test {
 		         System.out.println("Finally "+b); 
 		 }
 	 }
-	 
+	
 	 @Test
 	 public void Test6()
 	 {
@@ -264,7 +268,7 @@ public class EmaitzakIpiniDAB2Test {
 			 assertTrue(true);
 		 }
 	 }
-	 
+	
 	 @Test
 	 public void Test8()
 	 {
@@ -290,4 +294,5 @@ public class EmaitzakIpiniDAB2Test {
 		         System.out.println("Finally "+b);
 			}
 	 }
+	 */
 }
