@@ -1,5 +1,5 @@
 package tests;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertTrue; 
 import static org.junit.Assert.fail;
 
 import java.text.ParseException;
@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Quote;
 import exceptions.EventNotFinished;
@@ -63,7 +64,7 @@ public class EmaitzakIpiniDABTest {
 	
 	 
 	 @Test
-	 public void Test3()
+	 public void Test2()
 	 {
 		 try {
 				
@@ -100,7 +101,7 @@ public class EmaitzakIpiniDABTest {
 	 }
 	 
 	 @Test
-	 public void Test4()
+	 public void Test3()
 	 {
 		 try {
 				
@@ -137,7 +138,7 @@ public class EmaitzakIpiniDABTest {
 	 }
 	 
 	 @Test
-	 public void Test5()
+	 public void Test4()
 	 {
 		 try {
 				
@@ -182,7 +183,7 @@ public class EmaitzakIpiniDABTest {
 	 }
 	 
 	 @Test
-	 public void Test6()
+	 public void Test5()
 	 {
 		 
 		 try {
@@ -227,7 +228,7 @@ public class EmaitzakIpiniDABTest {
 	 }
 	 
 	 @Test
-	 public void Test7()
+	 public void Test6()
 	 {
 		 try {
 				
@@ -247,7 +248,7 @@ public class EmaitzakIpiniDABTest {
 	 }
 	 
 	 @Test
-	 public void Test8()
+	 public void Test7()
 	 {
 		 try {
 				
@@ -264,7 +265,7 @@ public class EmaitzakIpiniDABTest {
 	 }
 	 
 	 @Test
-	 public void Test9()
+	 public void Test8()
 	 {
 		 String queryText="Athletic";
 		 testDA.open();
