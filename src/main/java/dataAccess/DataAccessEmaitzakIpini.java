@@ -657,7 +657,7 @@ public class DataAccessEmaitzakIpini {
 		}
 	}
 
-	
+	 
 	public void ApustuaIrabazi(ApustuAnitza apustua) {
 		ApustuAnitza apustuAnitza = db.find(ApustuAnitza.class, apustua.getApustuAnitzaNumber());
 		Registered reg = apustuAnitza.getUser();

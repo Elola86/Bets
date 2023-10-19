@@ -300,7 +300,7 @@ public class TestDataAccess {
 						    guztiak.setBalioa((double)2);
 						    Registered registrado = new Registered("asdfadsxkfhjbflsadkjhxgcjks", "a", 1);
 						    guztiak.setUser(registrado);
-						    
+						     
 						    //db.persist(registrado);
 						    db.persist(ev);
 						    db.persist(guztiak);
