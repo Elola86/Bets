@@ -729,6 +729,8 @@ public class DataAccess  {
 		db.getTransaction().commit();
 	}
 	
+	
+	
 	public boolean gertaerakSortu(String description,Date eventDate, String sport) {
 		boolean b = true;
 		db.getTransaction().begin();
@@ -742,10 +744,8 @@ public class DataAccess  {
 				}
 			}
 			if(b) {
-				String[] taldeak = description.split("-");
-				Team lokala = new Team(taldeak[0]);
-				Team kanpokoa = new Team(taldeak[1]);
-				Event e = new Event(description, eventDate, lokala, kanpokoa);
+				Team[] taldeak = this.sortuTaldeak(null, description);
+				Event e = new Event(description, eventDate, taldeak[0], taldeak[1]);
 				e.setSport(spo);
 				spo.addEvent(e);
 				db.persist(e);
@@ -758,6 +758,44 @@ public class DataAccess  {
 		return b;
 	}
 	
+	private Boolean copiar(TypedQuery<Event> query, Event gertaera, Boolean a, Date date)
+	{
+		db.getTransaction().begin();
+		Boolean b = a;
+		if(query.getResultList().isEmpty()) {
+			b=true;
+			Team[] taldeak = this.sortuTaldeak(gertaera, null);
+			Event gertKopiatu = new Event(gertaera.getDescription(), date,  taldeak[0], taldeak[1]);
+			gertKopiatu.setSport(gertaera.getSport());
+			gertaera.getSport().addEvent(gertKopiatu);
+			db.persist(gertKopiatu);
+			this.sigueCopiando(gertaera, gertKopiatu);	
+		}
+		db.getTransaction().commit();
+		return b;
+		
+	}
+	
+	private Team[] sortuTaldeak(Event gertaera, String description)
+	{
+		String loquehace;
+		
+		if(gertaera!=null) 
+			loquehace= gertaera.getDescription();
+		else 
+			loquehace = description;
+		
+		
+		String[] taldeak = loquehace.split("-");
+		Team lokala = new Team(taldeak[0]);
+		Team kanpokoa = new Team(taldeak[1]);
+		
+		Team[] devuelve = new Team[2];
+		devuelve[0] = lokala;
+		devuelve[1] = kanpokoa;
+		
+		return devuelve;
+	}
 	public Quote storeQuote(String forecast, Double Quote, Question question) throws QuoteAlreadyExist {
 		//System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
 		
@@ -995,11 +1033,12 @@ public class DataAccess  {
 			List<Quote> listQUO = Qquery.getResultList();
 			for(int j=0; j<listQUO.size(); j++) {
 				Quote quo = db.find(Quote.class, listQUO.get(j));
-				for(int i=0; i<quo.getApustuak().size(); i++) {
-					ApustuAnitza apustuAnitza = quo.getApustuak().get(i).getApustuAnitza();
+				Vector<Apustua> apus = quo.getApustuak();
+				for(int i=0; i<apus.size(); i++) {
+					ApustuAnitza apustuAnitza = apus.get(i).getApustuAnitza();
 					ApustuAnitza ap1 = db.find(ApustuAnitza.class, apustuAnitza.getApustuAnitzaNumber());
 					db.getTransaction().begin();
-					ap1.removeApustua(quo.getApustuak().get(i));
+					ap1.removeApustua(apus.get(i));
 					db.getTransaction().commit();
 					if(ap1.getApustuak().isEmpty() && !ap1.getEgoera().equals("galduta")) {
 						this.apustuaEzabatu(ap1.getUser(), ap1);
@@ -1057,34 +1096,30 @@ public class DataAccess  {
 		Boolean b=false;
 		Event gertaera = db.find(Event.class, e.getEventNumber());
 		db.getTransaction().begin();
-		
-		
 		TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.getDescription()=?1 and ev.getEventDate()=?2",Event.class);   
 		query.setParameter(1,gertaera.getDescription());
 		query.setParameter(2, date);
-		if(query.getResultList().isEmpty()) {
-			b=true;
-			String[] taldeak = gertaera.getDescription().split("-");
-			Team lokala = new Team(taldeak[0]);
-			Team kanpokoa = new Team(taldeak[1]);
-			Event gertKopiatu = new Event(gertaera.getDescription(), date, lokala, kanpokoa);
-			gertKopiatu.setSport(gertaera.getSport());
-			gertaera.getSport().addEvent(gertKopiatu);
-			db.persist(gertKopiatu);
-				for(Question q : gertaera.getQuestions()) {
-					Question que= new Question(q.getQuestion(), q.getBetMinimum(), gertKopiatu);
-					gertKopiatu.listaraGehitu(que);
-					Question galdera = db.find(Question.class, q.getQuestionNumber());
-					db.persist(que);
-					for(Quote k: galdera.getQuotes()) {
-						Quote kuo= new Quote(k.getQuote(), k.getForecast(), que);
-						que.listaraGehitu(kuo);
-						db.persist(kuo);
-					}
-				}
-		}
+		b = this.copiar(query, gertaera, b, date);
 		db.getTransaction().commit();
 		return b;
+	}
+	
+	
+	
+	private void sigueCopiando(Event gertaera, Event gertKopiatu)
+	{
+		db.getTransaction().begin();
+		for(Question q : gertaera.getQuestions()) {
+			Question que= new Question(q.getQuestion(), q.getBetMinimum(), gertKopiatu);
+			gertKopiatu.listaraGehitu(que);
+			Question galdera = db.find(Question.class, q.getQuestionNumber());
+			db.persist(que);
+			for(Quote k: galdera.getQuotes()) {
+				Quote kuo= new Quote(k.getQuote(), k.getForecast(), que);
+				que.listaraGehitu(kuo);
+				db.persist(kuo);
+			}
+		}
 	}
 	
 	public boolean jarraitu(Registered jabea, Registered jarraitua, Double limit) {
