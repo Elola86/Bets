@@ -259,8 +259,6 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.close();
     	return dirua;
     }
-    
- 
 	
 	@WebMethod
 	public List<Registered> rankingLortu(){
