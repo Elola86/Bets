@@ -130,4 +130,6 @@ public interface BLFacade extends Serializable {
 	@WebMethod public Team findTeam(Registered u);
 	
 	@WebMethod public Sport findSport(Event q);
+	
+	@WebMethod public ExtendedIterator<Event> getEventsIterator(Date date);
 }

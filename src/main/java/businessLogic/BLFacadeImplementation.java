@@ -379,5 +379,17 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return team;
 	}
+
+	public ExtendedIterator<Event> getEventsIterator(Date date) {
+		
+		
+		dbManager.open(false);
+		ExtendedIterator<Event> a = dbManager.getEventsIterator(date);
+		dbManager.open(false);
+		
+		return a;
+	}
+
+	
 }
 
