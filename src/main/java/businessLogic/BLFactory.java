@@ -28,9 +28,10 @@ public class BLFactory {
 		a.setVisible(false);
 		
 		MainUserGUI b = new MainUserGUI(); 
-		b.setVisible(true);
-		BLFacade appFacadeInterface=null;
+		b.setVisible(true);	
+		BLFacade appFacadeInterface= null;
 		try {	
+			
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -44,7 +45,7 @@ public class BLFactory {
 				DataAccess da= new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 				appFacadeInterface=new BLFacadeImplementation(da);		
 			}		
-			else if(isLocal==2){ //If remote			
+			else { //If remote			
 				String serviceName= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName()+"?wsdl";
 			
 				//URL url = new URL("http://localhost:9999/ws/ruralHouses?wsdl");
@@ -67,6 +68,7 @@ public class BLFactory {
 			a.jLabelSelectOption.setForeground(Color.RED);	
 			
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
+			
 		}	
 		return appFacadeInterface;
 	}

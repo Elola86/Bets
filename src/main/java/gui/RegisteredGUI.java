@@ -22,6 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
 import businessLogic.BLFacade;
+import businessLogic.BLFacadeImplementation;
 import domain.Event;
 import domain.Registered;
 
@@ -111,6 +112,17 @@ public class RegisteredGUI extends JFrame {
 			jContentPane.add(getJButtonDesLogin());
 			jContentPane.add(getBtnRank());
 			jContentPane.add(getBtnDestacados());
+			
+			JButton btnApustuakTable = new JButton(ResourceBundle.getBundle("Etiquetas").getString("RegisteredGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			btnApustuakTable.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			btnApustuakTable.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame a= new WindowTable(user);
+					a.setVisible(true);
+				}
+			});
+			btnApustuakTable.setBounds(10, 391, 282, 68);
+			jContentPane.add(btnApustuakTable);
 		}
 		return jContentPane;
 	}
