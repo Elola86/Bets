@@ -287,6 +287,10 @@ public class DataAccess  {
 			ApustuAnitza apA12= new ApustuAnitza(reg3, 6.5);
 			ApustuAnitza apA13= new ApustuAnitza(reg2, 6.5);
 		
+			//añadidos para probar el adapter
+			reg4.addApustuAnitza(apA3);
+			reg4.addApustuAnitza(apA6);
+			
 			Apustua ap1 = new Apustua(apA1, quote4);
 			Apustua ap2 = new Apustua(apA1, quote1);
 			apA1.addApustua(ap2);

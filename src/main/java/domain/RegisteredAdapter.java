@@ -5,6 +5,10 @@ import javax.swing.table.AbstractTableModel;
 //UserAdapter
 public class RegisteredAdapter extends AbstractTableModel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Registered user;
 	protected String[] columnNames = new String [] {"Event","Question","Date","Bet(€)"};
 	public RegisteredAdapter(Registered user) {
@@ -16,6 +20,7 @@ public class RegisteredAdapter extends AbstractTableModel{
 	}
 	
 	public int getRowCount() {
+		System.out.println(user.getUsername());
 		return user.getApustuAnitzak().size();
 	}
 	
@@ -23,17 +28,19 @@ public class RegisteredAdapter extends AbstractTableModel{
 		return 4;
 	}
 	
-	public Object getValueAt(int rowIndex, int columnIndex) {
+	public String getValueAt(int rowIndex, int columnIndex) {
+		
+		
 		Apustua bet = getBetInTable(rowIndex);
 		if(columnIndex==0) {
 			return bet.getKuota().getQuestion().getEvent().getDescription();
 		}else if(columnIndex==1) {
 			return bet.getKuota().getQuestion().getQuestion();
 		}else if(columnIndex==2) {
-			return bet.getApustuAnitza().getData();
+			return bet.getApustuAnitza().getData().toLocaleString();
 			
 		}else if(columnIndex==3) {
-			return bet.getKuota().getQuote();
+			return bet.getKuota().getQuote().toString();
 		}else {
 			return null;
 		}	
