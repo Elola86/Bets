@@ -12,7 +12,7 @@ public class ExtendedIteratorEvents implements ExtendedIterator<Event>{
 	public ExtendedIteratorEvents (List<Event> eventos)
 	{
 		this.eventos = eventos;
-		System.out.println(eventos.size() + "skndblashbvdkjasvgdkhagsfvdjhagsvdjhasg");
+		
 	}
 	
 	public boolean hasNext() {
@@ -21,24 +21,22 @@ public class ExtendedIteratorEvents implements ExtendedIterator<Event>{
 	}
 
 	public Event next() {
-		
-		Event evento = eventos.get(posicion);
+		Event evento =eventos.get(posicion);
 		posicion = posicion + 1;
+		
 		return evento;
 	}
 
 	public Event previous() {
-		Event terminado = null;
-		if(hasPrevious())
-		{
-			terminado = eventos.get(posicion);
-			posicion = posicion-1;
-		}
+		
+		Event terminado = eventos.get(posicion);
+		posicion = posicion-1;
+		
 		return terminado;
 	}
 
 	public boolean hasPrevious() {
-		if(posicion>0) {
+		if(posicion>=0) {
 			return true;
 		}
 		return false;
