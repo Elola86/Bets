@@ -5,9 +5,6 @@ import javax.swing.table.AbstractTableModel;
 //UserAdapter
 public class RegisteredAdapter extends AbstractTableModel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected Registered user;
 	protected String[] columnNames = new String [] {"Event","Question","Date","Bet(€)"};
@@ -29,8 +26,7 @@ public class RegisteredAdapter extends AbstractTableModel{
 	}
 	
 	public String getValueAt(int rowIndex, int columnIndex) {
-		
-		
+			
 		Apustua bet = getBetInTable(rowIndex);
 		if(columnIndex==0) {
 			return bet.getKuota().getQuestion().getEvent().getDescription();
